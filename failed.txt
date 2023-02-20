@@ -1,0 +1,22 @@
+===== 7.4.33-4 (2023-02-14)
+
+$ grep -ar 'Tests failed' /var/lib/mock/*/build.log
+
+/var/lib/mock/el7x74/build.log:Tests failed   :    0
+/var/lib/mock/el8x74/build.log:Tests failed   :    0
+/var/lib/mock/el9x74/build.log:Tests failed   :    0
+/var/lib/mock/fc36x74/build.log:Tests failed  :    0
+/var/lib/mock/fc37x74/build.log:Tests failed  :    0
+/var/lib/mock/fc38x74/build.log:Tests failed  :    1
+
+
+fc38x:
+	3	openssl_private_decrypt() tests [ext/openssl/tests/openssl_private_decrypt_basic.phpt]
+
+
+1	proc_open give erratic test results :(
+2	test issue
+3	known issue
+4	bugs related to tzdata
+5	need investigation
+6 	// issue
