@@ -97,8 +97,8 @@
 %global with_libzip  1
 %global with_zip     0
 
-%global upver        7.4.33
-#global rcver        RC1
+%global upver        7.4.34
+#global rcver        pardot
 
 Summary: PHP scripting language for creating dynamic web sites
 Name: php
@@ -114,7 +114,7 @@ License: PHP and Zend and BSD and MIT and ASL 1.0 and NCSA
 Group: Development/Languages
 URL: http://www.php.net/
 
-Source0: http://www.php.net/distributions/php-%{upver}%{?rcver}.tar.xz
+Source0: https://github.com/arris-ray/php-src/archive/refs/heads/PHP-7.4.34.tar.gz
 Source1: php.conf
 Source2: php.ini
 Source3: macros.php
@@ -130,8 +130,8 @@ Source12: php-fpm.wants
 Source13: nginx-fpm.conf
 Source14: nginx-php.conf
 # See https://secure.php.net/gpg-keys.php
-Source20: https://www.php.net/distributions/php-keyring.gpg
-Source21: https://www.php.net/distributions/php-%{upver}%{?rcver}.tar.xz.asc
+# Source20: https://www.php.net/distributions/php-keyring.gpg
+# Source21: https://www.php.net/distributions/php-%{upver}%{?rcver}.tar.xz.asc
 # Configuration files for some extensions
 Source50: 10-opcache.ini
 Source51: opcache-default.blacklist
@@ -1141,11 +1141,11 @@ in pure PHP.
 
 
 %prep
-%{?gpgverify:%{gpgverify} --keyring='%{SOURCE20}' --signature='%{SOURCE21}' --data='%{SOURCE0}'}
+# %{?gpgverify:%{gpgverify} --keyring='%{SOURCE20}' --signature='%{SOURCE21}' --data='%{SOURCE0}'}
 
 : CIBLE = %{name}-%{version}-%{release} oci8=%{with_oci8} libzip=%{with_libzip} zts=%{with zts} debug=%{with debug}
 
-%setup -q -n php-%{upver}%{?rcver}
+  %setup -q -n php-%{upver}%{?rcver}
 
 %patch1 -p1 -b .mpmcheck
 %patch5 -p1 -b .includedir
@@ -1162,9 +1162,9 @@ in pure PHP.
 %patch45 -p1 -b .ldap_r
 %patch46 -p1 -b .argon2
 %patch47 -p1 -b .phpinfo
-%patch48 -p1 -b .snmp
+# %patch48 -p1 -b .snmp
 %if 0%{?fedora} >= 36 || 0%{?rhel} >= 9
-%patch50 -p1 -b .openssl3
+# %patch50 -p1 -b .openssl3
 rm ext/openssl/tests/p12_with_extra_certs.p12
 %endif
 
