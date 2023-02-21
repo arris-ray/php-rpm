@@ -98,12 +98,12 @@
 %global with_zip     0
 
 %global upver        7.4.34
-#global rcver        pardot
+#global rcver        RC1
 
 Summary: PHP scripting language for creating dynamic web sites
 Name: php
 Version: %{upver}%{?rcver:~%{rcver}}
-Release: 4%{?dist}
+Release: 1%{?dist}
 # All files licensed under PHP version 3.01, except
 # Zend is licensed under Zend
 # TSRM is licensed under BSD
@@ -114,7 +114,7 @@ License: PHP and Zend and BSD and MIT and ASL 1.0 and NCSA
 Group: Development/Languages
 URL: http://www.php.net/
 
-Source0: https://github.com/arris-ray/php-src/archive/refs/heads/PHP-7.4.34.tar.gz
+Source0: https://github.com/arris-ray/php-src/archive/refs/heads/PHP-%{upver}%{?rcver}.tar.gz
 Source1: php.conf
 Source2: php.ini
 Source3: macros.php
@@ -1141,11 +1141,11 @@ in pure PHP.
 
 
 %prep
-# %{?gpgverify:%{gpgverify} --keyring='%{SOURCE20}' --signature='%{SOURCE21}' --data='%{SOURCE0}'}
+%{?gpgverify:%{gpgverify} --keyring='%{SOURCE20}' --signature='%{SOURCE21}' --data='%{SOURCE0}'}
 
 : CIBLE = %{name}-%{version}-%{release} oci8=%{with_oci8} libzip=%{with_libzip} zts=%{with zts} debug=%{with debug}
 
-  %setup -q -n php-%{upver}%{?rcver}
+%setup -q -n php-src-PHP-%{upver}%{?rcver}
 
 %patch1 -p1 -b .mpmcheck
 %patch5 -p1 -b .includedir
@@ -1162,9 +1162,9 @@ in pure PHP.
 %patch45 -p1 -b .ldap_r
 %patch46 -p1 -b .argon2
 %patch47 -p1 -b .phpinfo
-# %patch48 -p1 -b .snmp
+%patch48 -p1 -b .snmp
 %if 0%{?fedora} >= 36 || 0%{?rhel} >= 9
-# %patch50 -p1 -b .openssl3
+%patch50 -p1 -b .openssl3
 rm ext/openssl/tests/p12_with_extra_certs.p12
 %endif
 
@@ -3799,4 +3799,3 @@ EOF
 - first work on php 5.4
 - remove -sqlite subpackage
 - move php/modules-zts to php-zts/modules
-
