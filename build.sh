@@ -15,7 +15,7 @@ yum install -y wget bison re2c
 cd php-74
 
 # Download zipped SRC files into a directory 
-wget -N "${PHP74_SRC_URL}" 
+wget -Nc "${PHP74_SRC_URL}"
 
 # Unzip SRC files in target directory (don't strip components)
 tar -xvzf PHP-7.4.34.tar.gz 
@@ -26,9 +26,17 @@ mv php-src-PHP-7.4.34 php-7.4.34
 # Tar top-level folder
 tar -zcvf php-7.4.34.tar.gz php-7.4.34
 
+# Move source files to SOURCES directory
+rm -rf PHP-7.4.34.tar.gz php-src-PHP-7.4.34 php-7.4.34
+cp * ${BUILDROOT}/SOURCES
+cp php74.spec ${BUILDROOT}/SPECS
+
 # Build SRPM file
-rpmbuild --buildroot=${BUILDROOT} -bs php74.spec
+rpmbuild -bs ${BUILDROOT}/SPECS/php74.spec
 
 # Move to repo root and reset state
 cd ..
 git reset --hard HEAD
+git clean -fd
+rm -f ${BUILDROOT}/SPECS/php74.spec
+rm -f ${BUILDROOT}/SOURCES/*
