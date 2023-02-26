@@ -1,0 +1,14 @@
+diff -up ./config.m4.rpm ./config.m4
+--- ./config.m4.rpm	2022-07-07 07:28:31.928904255 +0200
++++ ./config.m4	2022-07-07 07:30:39.835689129 +0200
+@@ -18,8 +18,8 @@ if test "$PHP_GRPC" != "no"; then
+ 
+   LIBS="-lpthread $LIBS"
+ 
+-  CFLAGS="-std=c11 -g -O2"
+-  CXXFLAGS="-std=c++14 -fno-exceptions -fno-rtti -g -O2"
++  CFLAGS="$CFLAGS -std=c11"
++  CXXFLAGS="$CXXFLAGS -std=c++14 -fno-exceptions -fno-rtti"
+   GRPC_SHARED_LIBADD="-lpthread $GRPC_SHARED_LIBADD"
+   PHP_REQUIRE_CXX()
+   PHP_ADD_LIBRARY(pthread)

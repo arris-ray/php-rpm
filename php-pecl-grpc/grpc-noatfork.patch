@@ -1,0 +1,11 @@
+diff -up ./config.m4.noatfork ./config.m4
+--- ./config.m4.noatfork	2022-07-07 07:30:58.524647576 +0200
++++ ./config.m4	2022-07-07 07:32:01.490513120 +0200
+@@ -1169,7 +1169,6 @@ if test "$PHP_GRPC" != "no"; then
+     , $ext_shared, , -fvisibility=hidden \
+     -DOPENSSL_NO_ASM -D_GNU_SOURCE -DWIN32_LEAN_AND_MEAN \
+     -D_HAS_EXCEPTIONS=0 -DNOMINMAX -DGRPC_ARES=0 \
+-    -DGRPC_POSIX_FORK_ALLOW_PTHREAD_ATFORK=1 \
+     -DGRPC_XDS_USER_AGENT_NAME_SUFFIX='"\"PHP\""' \
+     -DGRPC_XDS_USER_AGENT_VERSION_SUFFIX='"\"1.51.1\""')
+ 
