@@ -1145,7 +1145,7 @@ in pure PHP.
 
 : CIBLE = %{name}-%{version}-%{release} oci8=%{with_oci8} libzip=%{with_libzip} zts=%{with zts} debug=%{with debug}
 
-%setup -q -n php-src-PHP-%{upver}%{?rcver}
+%setup -q -n php-%{upver}%{?rcver} 
 
 %patch1 -p1 -b .mpmcheck
 %patch5 -p1 -b .includedir
