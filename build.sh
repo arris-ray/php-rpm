@@ -16,7 +16,7 @@ yum install -y wget bison re2c
 cd php-74
 
 # Download zipped SRC files into a directory 
-wget -Nc "${PHP74_SRC_URL}"
+wget -Nc "${PHP_SRC_URL}"
 
 # Unzip SRC files in target directory (don't strip components)
 tar -xvzf PHP-7.4.34.tar.gz 
